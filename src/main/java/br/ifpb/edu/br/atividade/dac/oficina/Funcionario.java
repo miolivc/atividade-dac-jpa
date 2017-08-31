@@ -1,8 +1,12 @@
 package br.ifpb.edu.br.atividade.dac.oficina;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -13,8 +17,13 @@ public class Funcionario implements Serializable {
     private String rg;
     private String nome;
     private double salario;
+    
     @OneToOne
+    @Enumerated(EnumType.STRING)
     private FuncaoFuncionario funcao;
+   
+    @ManyToMany(mappedBy = "conserto")
+    private List<Conserto> conserto;
 
     public Funcionario() {
     }
